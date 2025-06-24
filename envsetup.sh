@@ -204,12 +204,12 @@ function check_product()
         echo "Couldn't locate the top of the tree.  Try setting TOP." >&2
         return
     fi
-    if (echo -n $1 | grep -q -e "^blaze_") ; then
-        BLAZE_BUILD=$(echo -n $1 | sed -e 's/^blaze_//g')
+    if (echo -n $1 | grep -q -e "^scandium_") ; then
+        SCANDIUM_BUILD=$(echo -n $1 | sed -e 's/^scandium_//g')
     else
-        BLAZE_BUILD=
+        SCANDIUM_BUILD=
     fi
-    export BLAZE_BUILD
+    export SCANDIUM_BUILD
 
         TARGET_PRODUCT=$1 \
         TARGET_RELEASE= \
@@ -827,16 +827,16 @@ function lunch()
 
     if ! check_product $product
     then
-        # if we can't find a product, try to grab it off the ProjectBlaze-Devices GitHub
+        # if we can't find a product, try to grab it off the ScandiumOS-Devices GitHub
         T=$(gettop)
         cd $T > /dev/null
-        vendor/blaze/build/tools/roomservice.py $product
+        vendor/scandium/build/tools/roomservice.py $product
         cd - > /dev/null
         check_product $product
     else
         T=$(gettop)
         cd $T > /dev/null
-        vendor/blaze/build/tools/roomservice.py $product true
+        vendor/scandium/build/tools/roomservice.py $product true
         cd - > /dev/null
     fi
 
@@ -883,7 +883,7 @@ function lunch()
     fi
 
     echo "";
-    cat $(gettop)/build/make/blaze_ascii_logo;
+    cat $(gettop)/build/make/scandium_ascii_logo;
     echo"";
 }
 
@@ -2122,4 +2122,3 @@ validate_current_shell
 set_global_paths
 source_vendorsetup
 addcompletions
-
