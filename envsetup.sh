@@ -860,6 +860,11 @@ function lunch()
         fi
         return 1
     fi
+
+    echo "";
+    cat $(gettop)/build/make/scandium_ascii_logo;
+    echo"";
+
     export TARGET_PRODUCT=$(get_build_var TARGET_PRODUCT)
     export TARGET_BUILD_VARIANT=$(get_build_var TARGET_BUILD_VARIANT)
     export TARGET_RELEASE=$release
@@ -881,10 +886,6 @@ function lunch()
     if [[ -n "${CHECK_MU_CONFIG:-}" ]]; then
       check_mu_config
     fi
-
-    echo "";
-    cat $(gettop)/build/make/scandium_ascii_logo;
-    echo"";
 }
 
 unset COMMON_LUNCH_CHOICES_CACHE
